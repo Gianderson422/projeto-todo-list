@@ -3,15 +3,15 @@ const body = document.querySelector("body");
 const list = document.querySelector(".list");
 const counter = document.querySelector(".footer div");
 const footer = document.querySelector(".footer");
-const input = document.querySelector("input")
+const input = document.querySelector("input");
 
-/* 🌙 DARK MODE */
+/* DARK MODE */
 darkmode.addEventListener("click", function () {
     body.classList.toggle("darkmode");
     localStorage.setItem("theme", body.classList.contains("darkmode") ? "dark" : "light");
 });
 
-/* 🔄 CARREGAMENTO INICIAL */
+/* CARREGAMENTO INICIAL */
 document.addEventListener("DOMContentLoaded", function () {
 
     /* Tema */
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-/* ✅ MARCAR / DESMARCAR */
+/* MARCAR / DESMARCAR */
 list.addEventListener("click", function (event) {
     if (event.target.tagName === "INPUT") {
         const item = event.target.parentElement;
@@ -63,14 +63,14 @@ list.addEventListener("click", function (event) {
     }
 });
 
-/* 🔢 CONTADOR */
+/* CONTADOR */
 function atualizarContador() {
     const total = document.querySelectorAll(".item").length;
     const checked = document.querySelectorAll(".item-checked").length;
     counter.textContent = (total - checked) + " itens restantes";
 }
 
-/* 💾 SALVAR LISTA */
+/* SALVAR LISTA */
 function salvarLista() {
     const items = document.querySelectorAll(".item");
     const todoArray = [];
@@ -85,14 +85,14 @@ function salvarLista() {
     localStorage.setItem("todoItems", JSON.stringify(todoArray));
 }
 
-/* 🧹 FILTROS + LIMPEZA */
+/* FILTROS E LIMPEZA */
 footer.addEventListener("click", function (event) {
     event.preventDefault();
     if (event.target.tagName !== "A") return;
 
     const filter = event.target.getAttribute("href");
     const items = document.querySelectorAll(".item");
-    const active = document.querySelectorAll(".footer a")
+    const active = document.querySelectorAll(".footer a");
 
     active.forEach(function (a) {
         a.classList.remove("active");
@@ -116,9 +116,9 @@ footer.addEventListener("click", function (event) {
     });
 });
 
-input.addEventListener('keydown', function (event) {
+/* ADICIONAR ITEM */
+input.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-
         if (input.value.trim() !== "") {
             const item = document.createElement("div");
             item.classList.add("item");
@@ -136,8 +136,6 @@ input.addEventListener('keydown', function (event) {
             input.value = "";
             atualizarContador();
             salvarLista();
-
-
         }
     }
 });
